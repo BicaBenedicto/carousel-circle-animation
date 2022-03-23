@@ -1,0 +1,29 @@
+@import './carouselAnimation.scss';
+@import '/carousel-animation.config.scss';
+
+.carousel-animation-body {
+  display: flex;
+  position: relative;
+  margin: 0 auto;
+  overflow: hidden;
+  height: $height;
+  width: 100%;
+  .carousel-item {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    right: 50%;
+    max-height: 20px;
+  }
+  @include carouselAnimation($length, $quantity-small, $size-small);
+
+  @media only screen and ($screen-medium) {
+    @include carouselAnimation($length, $quantity-medium, $size-medium);
+  }
+  @media only screen and ($screen-big) {
+    @include carouselAnimation($length, $quantity-big, $size-big);
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "name": "carousel-circle-animation",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BicaBenedicto/carousel-circle-animation.git"
+  },
+  "keywords": [],
+  "author": "Gabriel Pereira Benedicto",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BicaBenedicto/carousel-circle-animation/issues"
+  },
+  "homepage": "https://github.com/BicaBenedicto/carousel-circle-animation#readme",
+  "dependencies": {
+    "react": "^17.0.2",
+    "sass": "^1.49.9"
+  }
+}

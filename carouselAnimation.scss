@@ -1,0 +1,115 @@
+@mixin carouselAnimation($length, $quantity, $size) {
+  @for $i from 1 through $length {
+    div.shadow-left-#{$i} {
+      animation: shadow-left-#{$i} 1s ease-in-out both;
+      p {
+        animation: p-Effect-left-#{$i} 3s ease-in-out both;
+      }
+    }
+    div.shadow-right-#{$i} {
+      animation: shadow-right-#{$i} 1s ease-in-out both;
+      p {
+        animation: p-Effect-right-#{$i} 3s ease-in-out both;
+      }
+    }
+
+    @keyframes p-Effect-left-#{$i} {
+      0% {
+        @if $i == 1 {
+          opacity: 1;
+        } @else {
+          opacity: 0;
+        }
+      }
+      100% {
+        opacity: 0;
+      }
+    }
+
+    @keyframes p-Effect-right-#{$i} {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        @if $i == 1 {
+          opacity: 1;
+        } @else {
+          opacity: 0;
+        }
+      }
+    }
+    
+    @if $i < $quantity {
+      @keyframes shadow-left-#{$i} {
+        0% {
+          @if $i == 1 {
+            transform: scale(($quantity -$i) * $size)  translateX(0);
+            font-weight: 500;
+            opacity: 1;
+          } @else {
+            transform: scale(($quantity -$i) * $size)  translateX(($i - 1) * -50px);
+            opacity: ($i * 0.05);
+          }
+          z-index: ($length - $i);
+        }
+        100% {
+          transform: scale(($quantity - $i - 1) * $size)  translateX($i * -50px);
+          opacity: $i * 0.05;
+          z-index: ($length - $i);
+        }
+      }
+      @keyframes shadow-right-#{$i} {
+        0% {
+          @if $i == 1 {
+            transform: scale(($quantity -$i - 1) * $size)  translateX(50px);
+          } @else {
+            @if $i == ($quantity - 1) {
+              transform: scale(($quantity - $i - 1) * $size)  translateX(($i - 1) * -50px);
+            } @else {
+              transform: scale(($quantity - $i - 1) * $size)  translateX($i * 50px);
+            }
+          }
+          opacity: ($i * 0.05);
+          z-index: ($length - $i);
+        }
+        100% {
+          @if $i == 1 { 
+            font-weight: 500;
+            opacity: 1;
+          } @else {
+            opacity: ($i * 0.05);
+          }
+          transform: scale(($quantity - $i) * $size)  translateX(($i - 1) * 50px);
+          z-index: ($length - $i);
+        }
+      }
+    } @else {
+      @keyframes shadow-right-#{$i} {
+        0% {
+          transform: scale(0)  translateX(0);
+        }
+        100% {
+          transform: scale(0)  translateX(0);
+        }
+      }
+      @keyframes shadow-left-#{$i} {
+        0% {
+          transform: scale(0)  translateX(0);
+        }
+        100% {
+          transform: scale(0)  translateX(0);
+        }
+      }
+    }
+    @if $i == ($length - 1) {
+        @keyframes shadow {
+        0% {
+          transform: scale(($quantity - $i + 1) * $size)  translateX(($quantity - 1) * -43px);
+        }
+        100% {
+          transform: scale(0)  translateX(0);
+        }
+      }
+    }
+  }
+}
